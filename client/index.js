@@ -1,6 +1,3 @@
-const noteArr = [{ noteID: 1, noteText: 'test text'}];
-let currID = 1;
-
 // new-note button
 const buttonEl = document.querySelector('.new-note__button')
 // add eventlistener
@@ -9,12 +6,31 @@ buttonEl.addEventListener('click', createNote)
 function createNote() {
   // on click get text from input field
   const noteText = document.querySelector('#new-note__input');
-  console.log(noteText.value);
-  console.log('currID: ', currID)
-  const noteID = currID++
-  console.log('noteID: ', noteID, 'currID: ', currID)
-  // add input text to noteArr
+  // create note container
+  const noteContainerEl = document.createElement('div');
+  // create note p
+  const noteTextEl = document.createElement('p');
+  // create note button
+  const noteButtonEl = document.createElement('button');
+  
+  //setup note container
+  noteContainerEl.classList.add('note__container');
 
+  //setup noteText
+  noteTextEl.classList.add('note__text');
+  noteTextEl.textContent = noteText.value;
+  noteText.value = '';
+
+  // setup noteButton
+  noteButtonEl.classList.add('note__button');
+  noteButtonEl.textContent = 'X';
+  noteButtonEl.addEventListener('click', () => {
+    noteContainerEl.remove();
+  });
+
+  // append all elements to DOM
+  noteContainerEl.append(noteTextEl, noteButtonEl);
+  document.querySelector('#notes').append(noteContainerEl);
 }
 
 // RENDER NOTES
