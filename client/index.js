@@ -1,6 +1,5 @@
-import { v4 as uuid } from 'uuid';
-
 const noteArr = [{ noteID: 1, noteText: 'test text'}];
+let currID = 1;
 
 // new-note button
 const buttonEl = document.querySelector('.new-note__button')
@@ -11,9 +10,9 @@ function createNote() {
   // on click get text from input field
   const noteText = document.querySelector('#new-note__input');
   console.log(noteText.value);
-  // generate new uuid
-  const noteID = uuid();
-  console.log(noteID)
+  console.log('currID: ', currID)
+  const noteID = currID++
+  console.log('noteID: ', noteID, 'currID: ', currID)
   // add input text to noteArr
 
 }
